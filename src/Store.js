@@ -2,12 +2,33 @@ import React from "react"
 
 export const Store = React.createContext()
 
-const initialState = {}
+const initialState = {
+  episodes: [],
+  favorites: []
+}
 
-function reducer() {}
+function reducer(state, action) {
+  switch (action.type) {
+    case "FETCH_DATA":
+      return { ...state, episodes: action.payload }
+    case "ADD_FAV":
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload]
+      }
+    case "REMOVE_FAV":
+      return {
+        ...state,
+        favorites: action.payload
+      }
+    default:
+      return state
+  }
+}
 
 export function StoreProvider(props) {
-  return (
-    <Store.Provider value="data from store">{props.children}</Store.Provider>
-  )
+  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const value = { state, dispatch }
+
+  return <Store.Provider value={value}>{props.children}</Store.Provider>
 }
