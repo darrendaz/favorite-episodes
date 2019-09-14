@@ -1,7 +1,8 @@
 import React from "react"
 import { Store } from "./Store"
-
-const EpisodesList = React.lazy(() => import("./EpisodesList"))
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import HomePage from "./HomePage"
+import FavPage from "./FavPage"
 
 export default function App() {
   const { state, dispatch } = React.useContext(Store)
@@ -52,7 +53,26 @@ export default function App() {
           <h1>Rick and Morty</h1>
           <p>Pick your favourite episodes</p>
         </div>
-        <div>Favorite(s) {state.favorites.length}</div>
+
+        <Router>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/favorites">
+                    Favorite(s) {state.favourites.length}
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Route path="/" exact component={HomePage} />
+            <Route path="/favorites" exact component={FavPage} />
+          </div>
+        </Router>
         <section className="episode-layout">
           <EpisodesList {...props} />
         </section>
