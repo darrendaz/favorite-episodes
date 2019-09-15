@@ -1,27 +1,38 @@
 import React from "react"
-import { BrowserRouter as Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import HomePage from "./HomePage"
 import FavPage from "./FavPage"
 import { Store } from "./Store"
 
 export default function App(props) {
-  const state = React.useContext(Store)
+  const { state } = React.useContext(Store)
 
   return (
     <React.Fragment>
-      <div className="header">
-        <h1>Rick and Morty</h1>
-        <p>Pick your favourite episodes</p>
-
+      <Router>
+        <div className="header">
+          <h1>Rick and Morty</h1>
+          <p>Pick your favorite episodes</p>
+          <nav className="nav">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/favorites">
+                  Favorite(s) {state.favorites && state.favorites.length}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
         <div>
-          <Link to="/">Home</Link>
-          <Link to="/favorites">Favorite(s)</Link>
-
           <Route path="/" exact component={HomePage} />
           <Route path="/favorites" exact component={FavPage} />
         </div>
-      </div>
-      {props.children}
+
+        {props.children}
+      </Router>
     </React.Fragment>
   )
 }

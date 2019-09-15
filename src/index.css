@@ -37,3 +37,13 @@ code {
 .header * {
   margin: 0;
 }
+
+.nav {
+  width: 200px;
+}
+
+.nav li {
+  display: inline-block;
+  list-style: none;
+  padding: 10px;
+}

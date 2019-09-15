@@ -33,7 +33,11 @@ export default function FavPage() {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <div className="episode-layout">
-        <EpisodesList {...props} />
+        {props.episodes.length > 0 ? (
+          <EpisodesList {...props} />
+        ) : (
+          "You dont have any favorites Yet"
+        )}
       </div>
     </React.Suspense>
   )

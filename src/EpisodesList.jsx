@@ -12,8 +12,7 @@ export default function EpisodesList(props) {
         <div>{episode.name}</div>
         <section style={{ dispay: "flex", justifyContent: "space-between" }}>
           <div>
-            Season: {episode.season}
-            Number: {episode.number}
+            Season: {episode.season} Episode: {episode.number}
           </div>
           <button onClick={() => toggleFavAction(episode)}>
             {favorites.find(fav => fav.id === episode.id) ? "Unfav" : "Fav"}
