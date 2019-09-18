@@ -1,10 +1,16 @@
 import React from "react"
+import styled from "styled-components"
+
 export default function EpisodesList(props) {
   const { episodes, toggleFavAction, favorites } = props
 
+  const EpisodeCard = styled.section`
+    padding: 0.5em;
+  `
+
   return episodes.map(episode => {
     return (
-      <section className="episode-box" key={episode.id}>
+      <EpisodeCard key={episode.id}>
         <img
           src={episode.image.medium}
           alt={`Rick and Morty ${episode.name}`}
@@ -18,7 +24,7 @@ export default function EpisodesList(props) {
             {favorites.find(fav => fav.id === episode.id) ? "Unfav" : "Fav"}
           </button>
         </section>
-      </section>
+      </EpisodeCard>
     )
   })
 }

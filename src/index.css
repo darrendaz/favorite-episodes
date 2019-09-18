@@ -19,10 +19,6 @@ code {
   min-width: 100vh;
 }
 
-.episode-box {
-  padding: 0.5em;
-}
-
 .header {
   align-items: center;
   background: white;

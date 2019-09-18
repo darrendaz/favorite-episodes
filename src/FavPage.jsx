@@ -30,6 +30,7 @@ export default function FavPage() {
     toggleFavAction: toggleFavAction,
     favorites: state.favorites
   }
+
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <div className="episode-layout">
